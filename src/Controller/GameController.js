@@ -11,7 +11,7 @@ class GameController{
   async play() {
     await this.gameStart.gameStartMsg();
     this.splitRacerNames = await this.gameStart.racerNamesFormatter();
-    Console.print(this.splitRacerNames);
+    
   }
 }
 
