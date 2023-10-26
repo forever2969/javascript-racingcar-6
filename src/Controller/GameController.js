@@ -26,13 +26,8 @@ class GameController{
         await this.racerAdvanceControll()
         this.raceView.raceProgressView(times,this.advanceBool,this.splitRacerNames);
       }
-      Console.print("");
     }
-    
-
-
   }
-
 }
 
 export default GameController;

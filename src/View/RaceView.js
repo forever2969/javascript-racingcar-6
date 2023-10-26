@@ -4,10 +4,18 @@ import GameStart from '../Model/GameStart.js';
 class RaceView{
   constructor(){
     this.gameStart = new GameStart();
-    this.racerForwardNumberStorage = [0,0,0];
+    this.racerForwardNumberStorage = [];
+  }
+
+  oneTimeEndJudgment(){
+
   }
 
   async raceProgressView(times,advanceBool,splitRacerNames) {
+    if(this.racerForwardNumberStorage.length === 0){
+      this.racerForwardNumberStorage = new Array(splitRacerNames.length).fill(0);
+    }
+
     process.stdout.write(`${splitRacerNames[times]} : `)
     
 
@@ -16,10 +24,14 @@ class RaceView{
     }
 
     if(advanceBool){
-      this.racerForwardNumberStorage[times] += 1;
+      this.racerForwardNumberStorage[times] ++;
       process.stdout.write("-");
     }
     Console.print("");
+
+    if(splitRacerNames.length-1 === times){
+      Console.print("");
+    }
   }
 
   getRacerForwardNumberStorage(){
