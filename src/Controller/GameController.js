@@ -8,12 +8,19 @@ class GameController{
     this.gameStart = new GameStart();
     this.raceView = new RaceView();
     this.splitRacerNames = [];
+    this.racerAdvanceResult = [];
+    this.chosenWinnerRacers = [];
+    this.chosenWinnerRacersNames = [];
     this.advanceBool = false;
     this.numberOfRacers = 0;
   }
 
   async racerAdvanceControll(){
     this.advanceBool = await RacerAdvanceNumber.chooseAdvanceOrNot();
+  }
+
+  async chooseWinnerRacers(){
+    this.chosenWinnerRacersNames = this.chosenWinnerRacers.map(index => this.splitRacerNames[index]);
   }
   
   async play() {
@@ -27,6 +34,12 @@ class GameController{
         this.raceView.raceProgressView(times,this.advanceBool,this.splitRacerNames);
       }
     }
+
+    this.racerAdvanceResult = await this.raceView.oneTimeEndJudgment();
+    this.chosenWinnerRacers = await RacerAdvanceNumber.oneTimeEndJudgment(this.racerAdvanceResult);
+    await this.chooseWinnerRacers();
+
+    this.raceView.raceResultView(this.chosenWinnerRacersNames);
   }
 }
 

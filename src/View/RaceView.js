@@ -7,8 +7,8 @@ class RaceView{
     this.racerForwardNumberStorage = [];
   }
 
-  oneTimeEndJudgment(){
-
+  async oneTimeEndJudgment(){
+    return this.racerForwardNumberStorage;
   }
 
   async raceProgressView(times,advanceBool,splitRacerNames) {
@@ -32,6 +32,12 @@ class RaceView{
     if(splitRacerNames.length-1 === times){
       Console.print("");
     }
+  }
+
+  async raceResultView(chosenWinnerRacersNames){
+    const printRacerNames = chosenWinnerRacersNames.map((member) => member).join(",");
+
+    Console.print(`최종 우승자 : ${printRacerNames}`);
   }
 
   getRacerForwardNumberStorage(){

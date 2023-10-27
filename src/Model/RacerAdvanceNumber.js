@@ -8,6 +8,18 @@ class RacerAdvanceNumber{
     }
     return false;
   }
+
+  static async oneTimeEndJudgment(racerAdvanceResult){
+    const maxAdvance = Math.max(...racerAdvanceResult);
+    const maxAdvanceIndex = [];
+    racerAdvanceResult.forEach((advance,index)=>{
+      if(advance === maxAdvance){
+        maxAdvanceIndex.push(index);
+      }
+    })
+
+    return maxAdvanceIndex;
+  }
 }
 
 export default RacerAdvanceNumber;
