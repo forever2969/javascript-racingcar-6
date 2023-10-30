@@ -1,9 +1,11 @@
 import { Console, Random } from '@woowacourse/mission-utils';
+import ErrorController from '../Controller/ErrorController.js';
 
 class GameStart {
   constructor(){
     this.racerNames = "";
     this.gameCount = 0;
+    this.errorController = new ErrorController();
   }
 
   //게임 시작 메시지 출력과 함께 사용자 입력을 받는 함수
@@ -12,7 +14,8 @@ class GameStart {
     const trimRacerNames = this.racerNames.trim();
     const splitRacerNames = trimRacerNames.split(",");
 
-    //여기서 부터 ErrorView, ErrorController를 만들어서 splitRacerNames를 념겨서
+    await this.errorController.nameErrorDetect(splitRacerNames); //이름의 Array를 이름 길이 Error를 판단하는 함수로 전달
+    
     this.gameCount = await Console.readLineAsync("시도할 횟수는 몇 회인가요?\n");
   }
   

@@ -19,20 +19,21 @@ class RaceView{
       this.racerForwardNumberStorage = new Array(splitRacerNames.length).fill(0);
     }
 
-    //time에 해당하는 racer name출력
-    process.stdout.write(`${splitRacerNames[times]} : `)
+    let resultString = `${splitRacerNames[times]} : `; //출력 String을 해당 차례의 racer name으로 초기화
+    //time에 해당하는 racer name저장
     
-    //현재까지 누적된 전진 횟수 출력
+    //현재까지 누적된 전진 횟수 저장
     for(let count = 0; count<this.racerForwardNumberStorage[times]; count++){
-      process.stdout.write("-");
+      resultString = resultString.concat("-");
     }
 
-    //현재 time에 전진을 한다면, "-"한개 더 출력
+    //현재 time에 전진을 한다면, "-"한개 더 저장
     if(advanceBool){
       this.racerForwardNumberStorage[times] ++;
-      process.stdout.write("-");
+      resultString = resultString.concat("-");
     }
-    Console.print("");
+
+    Console.print(`${resultString}`); //최종 전진 결과 출력
 
     //racer들의 전진 출력이 모두 완료되었을 때 개행 출력
     if(splitRacerNames.length-1 === times){
@@ -42,7 +43,7 @@ class RaceView{
 
   //최종 우승자를 판별하여 출력하는 Function
   async raceResultView(chosenWinnerRacersNames){
-    const printRacerNames = chosenWinnerRacersNames.map((member) => member).join(",");
+    const printRacerNames = await chosenWinnerRacersNames.map((member) => member).join(",");
 
     Console.print(`최종 우승자 : ${printRacerNames}`);
   }

@@ -42,7 +42,7 @@ class GameController{
     this.chosenWinnerRacers = await RacerAdvanceNumber.oneTimeEndJudgment(this.racerAdvanceResult); //우승자를 Array로 추출
     await this.chooseWinnerRacers(); //추출한 Array를 String으로 변환
 
-    this.raceView.raceResultView(this.chosenWinnerRacersNames); //추출한 Winner String을 출력하기 위해 View로 전송
+    await this.raceView.raceResultView(this.chosenWinnerRacersNames); //추출한 Winner String을 출력하기 위해 View로 전송
   }
 }
 
